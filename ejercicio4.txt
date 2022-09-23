@@ -1,6 +1,7 @@
-	var nombre string = "Julián"
+
+  var nombre string = "Julián"
 	var apellido string = "Gomez"
 	var edad int = 35
-	boolean := false
+	bool := false
 	var sueldo float64 = 45857.90
-  
+ 
