@@ -6,6 +6,6 @@ func main() {
 	var nombre = "Germán"
 
 	var direccion = "Moreto 571"
-	fmt.Print(nombre, "\n", direccion)
+	fmt.Println(nombre, "\n", direccion)
 
 }

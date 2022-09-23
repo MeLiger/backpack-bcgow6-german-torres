@@ -8,6 +8,6 @@ func main() {
 		humedad     int     = 18
 		presion     int     = 25
 	)
-	fmt.Print(temperatura, humedad, presion)
+	fmt.Println(temperatura, humedad, presion)
 
 }
