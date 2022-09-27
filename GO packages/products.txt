@@ -1,0 +1,7 @@
+
+ID: KT-303
+Price: 350
+Quantity: 15;
+ID: T1-112
+Price: 500
+Quantity: 92;
