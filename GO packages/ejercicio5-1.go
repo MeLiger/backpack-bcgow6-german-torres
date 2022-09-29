@@ -30,15 +30,15 @@ func main() {
 	d1 := []byte("hello")
 	err := os.WriteFile("/tmp/dat1", d1, 0644)
 
-	file, err := os.OpenFile("products.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	file, err := os.OpenFile("products.csv", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		panic(err)
 	}
 
-	if _, err := f.Write([]byte(product1.details())); err != nil {
+	if _, err := file.Write([]byte(product1.details())); err != nil {
 		panic(err)
 	}
-	if _, err := f.Write([]byte(product2.details())); err != nil {
+	if _, err := file.Write([]byte(product2.details())); err != nil {
 		panic(err)
 	}
 
