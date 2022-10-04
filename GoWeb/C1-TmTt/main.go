@@ -15,7 +15,7 @@ type Users struct {
 	Email   string  `json:"email"`
 	Height  float64 `json:"height"`
 	Active  bool    `json:"active"`
-	Date    string  `form:"active" json:"date"`
+	Date    string  `form:"active"json:"date"`
 }
 
 var users = []Users{
@@ -54,16 +54,6 @@ func welcomeGer(ctx *gin.Context) {
 	ctx.JSON(200, gin.H{
 		"message": "Hola Germán! Ánimo, vas mejorando!",
 	})
-
-}
-
-func activeFilter(ctx *gin.Context) {
-	var filtered []*Users
-	for _, e := range users {
-		if ctx.Query("active") == e.Active {
-			filtered = append(filtered, &e)
-		}
-	}
 
 }
 
