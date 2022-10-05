@@ -99,7 +99,7 @@ func (c *UserController) Update(ctx *gin.Context) {
 		ctx.JSON(400, gin.H{"error": "La altura es requerida"})
 		return
 	}
-	if req.Active == false {
+	if !req.Active {
 		ctx.JSON(400, gin.H{"error": "La altura es requerida"})
 		return
 	}
