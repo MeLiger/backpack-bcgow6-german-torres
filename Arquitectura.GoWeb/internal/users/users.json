@@ -1,8 +1,7 @@
 [{
     
         "id": 1,
-        "name": "Jerry",
-        "surname": "Louis",
+        "name": "Jerry Louis",
         "email": "jerryls@gmail.com",
         "height": 1.83,
         "active": true,
@@ -10,8 +9,7 @@
     }, {
 
         "id": 2,
-        "name": "Moria",
-        "surname": "Nurina",
+        "name": "Moria Nurina",
         "email": "merinawitch99@gmail.com",
         "height": 1.71,
         "active": false,
@@ -19,8 +17,7 @@
     } , {
 
         "id": 3,
-        "name": "Tadeo",
-        "surname": "Namunkura",
+        "name": "Tadeo Namunkura",
         "email": "tanamunku@gmail.com",
         "height": 1.75,
         "active": false,
@@ -28,8 +25,7 @@
     }, {
 
         "id": 4,
-        "name": "Ken",
-        "surname": "Rawson",
+        "name": "Ken Rawson",
         "email": "kencherawsonpota@gmail.com",
         "height": 1.80,
         "active": true,
@@ -37,8 +33,7 @@
     }, {
 
         "id": 5,
-        "name": "Rafael",
-        "surname": "Batalla",
+        "name": "Rafael Batalla",
         "email": "rafabatalla@gmail.com",
         "height": 1.67,
         "active": true,
@@ -46,8 +41,7 @@
     } , {
 
         "id": 6,
-        "name": "Eliana",
-        "surname": "Franco",
+        "name": "Eliana Franco",
         "email": "eliluni12@gmail.com",
         "height": 1.65,
         "active": false,
@@ -55,8 +49,7 @@
     }, {
 
         "id": 7,
-        "name": "Kendra",
-        "surname": "Kamala",
+        "name": "Kendra Kamala",
         "email": "kamalaken@gmail.com",
         "height": 1.80,
         "active": true,
@@ -64,8 +57,7 @@
     }, {
 
         "id": 8,
-        "name": "Marina",
-        "surname": "Lagos",
+        "name": "Marina Lagos",
         "email": "marinalagos@gmail.com",
         "height": 1.54,
         "active": false,
@@ -73,8 +65,7 @@
     } , {
 
         "id": 9,
-        "name": "Justina",
-        "surname": "Beleza",
+        "name": "Justina Beleza",
         "email": "justibel.com",
         "height": 1.52,
         "active": true,
@@ -82,8 +73,7 @@
     }, {
 
         "id": 10,
-        "name": "Donatello",
-        "surname": "Henriquez",
+        "name": "Donatello Henriquez",
         "email": "donatelloturtle@gmail.com",
         "height": 1.88,
         "active": false,
