@@ -35,16 +35,16 @@ func (c *UserController) GetAll(ctx *gin.Context) {
 		ctx.JSON(401, web.NewResponse(401, nil, "Token inválido"))
 		return
 	}
-	u, err := c.service.GetAll()
+	us, err := c.service.GetAll()
 	if err != nil {
 		ctx.JSON(500, web.NewResponse(500, nil, err.Error()))
 		return
 	}
-	if len(u) == 0 {
-		ctx.JSON(404, web.NewResponse(404, nil, "No hay productos almacenados"))
+	if len(us) == 0 {
+		ctx.JSON(404, web.NewResponse(404, nil, "No hay usuarios registrados"))
 		return
 	}
-	ctx.JSON(200, web.NewResponse(200, u, ""))
+	ctx.JSON(200, web.NewResponse(200, us, ""))
 }
 
 func (c *UserController) Store(ctx *gin.Context) {
