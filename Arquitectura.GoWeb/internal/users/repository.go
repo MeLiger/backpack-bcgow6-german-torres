@@ -2,6 +2,8 @@ package users
 
 import (
 	"fmt"
+
+	"github.com/MeLiger/backpack-bcgow6-german-torres/Arquitectura.GoWeb/pkg/store"
 )
 
 type User struct {
