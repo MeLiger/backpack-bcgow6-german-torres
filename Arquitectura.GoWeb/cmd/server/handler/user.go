@@ -6,6 +6,7 @@ import (
 	"strconv"
 
 	"github.com/MeLiger/backpack-bcgow6-german-torres/Arquitectura.GoWeb/internal/users"
+	"github.com/MeLiger/backpack-bcgow6-german-torres/Arquitectura.GoWeb/pkg/web"
 	"github.com/gin-gonic/gin"
 )
 
@@ -29,44 +30,64 @@ func NewUserController(u users.Service) *UserController {
 }
 
 func (c *UserController) GetAll(ctx *gin.Context) {
-	token := ctx.GetHeader("token")
-
-	if token != os.Getenv("TOKEN") {
-		ctx.JSON(401, gin.H{
-			"error": "token inválido",
-		})
+	token := ctx.Request.Header.Get("token")
+	if token != "123456" {
+		ctx.JSON(401, web.NewResponse(401, nil, "Token inválido"))
 		return
 	}
-
-	users, err := c.service.GetAll()
+	u, err := c.service.GetAll()
 	if err != nil {
-		ctx.JSON(404, gin.H{
-			"error": err.Error(),
-		})
+		ctx.JSON(500, web.NewResponse(500, nil, err.Error()))
 		return
 	}
-	ctx.JSON(200, users)
+	if len(u) == 0 {
+		ctx.JSON(404, web.NewResponse(404, nil, "No hay productos almacenados"))
+		return
+	}
+	ctx.JSON(200, web.NewResponse(200, u, ""))
 }
 
 func (c *UserController) Store(ctx *gin.Context) {
 	token := ctx.GetHeader("token")
-	if token != os.Getenv("TOKEN") {
-		ctx.JSON(401, gin.H{"error": "token inválido"})
+	if token != "123456" {
+		ctx.JSON(401, web.NewResponse(401, nil, "Token inválido"))
 		return
 	}
 	var req request
-	if err := ctx.Bind(&req); err != nil {
-		ctx.JSON(404, gin.H{
-			"error": err.Error(),
-		})
+	if err := ctx.ShouldBindJSON(&req); err != nil {
+		ctx.JSON(400, web.NewResponse(400, nil, err.Error()))
 		return
 	}
-	user, err := c.service.Store(req.Name, req.Email, req.Age, req.Height, req.Active, req.Date)
+	if req.Name == "" {
+		ctx.JSON(400, web.NewResponse(400, nil, "El nombre del usuario es requerido"))
+		return
+	}
+	if req.Email == "" {
+		ctx.JSON(400, web.NewResponse(400, nil, "La dirección de Email es requerida"))
+		return
+	}
+	if req.Age == 0 {
+		ctx.JSON(400, web.NewResponse(400, nil, "La edad es requerida"))
+		return
+	}
+	if req.Height == 0 {
+		ctx.JSON(400, web.NewResponse(400, nil, "La estatura es requerida"))
+		return
+	}
+	if !req.Active {
+		ctx.JSON(400, web.NewResponse(400, nil, "La actividad es requerida"))
+		return
+	}
+	if req.Date == "" {
+		ctx.JSON(400, web.NewResponse(400, nil, "La fecha es requerida"))
+		return
+	}
+	p, err := c.service.Store(req.Name, req.Email, req.Age, req.Height, req.Active, req.Date)
 	if err != nil {
-		ctx.JSON(404, gin.H{"error": err.Error()})
+		ctx.JSON(400, web.NewResponse(400, nil, err.Error()))
 		return
 	}
-	ctx.JSON(200, user)
+	ctx.JSON(200, web.NewResponse(200, p, ""))
 }
 
 func (c *UserController) Update(ctx *gin.Context) {
