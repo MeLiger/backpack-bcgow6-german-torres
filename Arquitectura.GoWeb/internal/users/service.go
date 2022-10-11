@@ -19,12 +19,12 @@ func NewService(r Repository) Service {
 }
 
 func (s *service) GetAll() ([]User, error) {
-	ps, err := s.repository.GetAll()
+	us, err := s.repository.GetAll()
 	if err != nil {
 		return nil, err
 	}
 
-	return ps, nil
+	return us, nil
 }
 
 func (s *service) Store(name, email string, age int, height int, active bool, date string) (User, error) {

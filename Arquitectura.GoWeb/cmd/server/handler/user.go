@@ -2,6 +2,7 @@ package handler
 
 import (
 	"fmt"
+	"os"
 	"strconv"
 
 	"github.com/MeLiger/backpack-bcgow6-german-torres/Arquitectura.GoWeb/internal/users"
@@ -28,8 +29,9 @@ func NewUserController(u users.Service) *UserController {
 }
 
 func (c *UserController) GetAll(ctx *gin.Context) {
-	token := ctx.Request.Header.Get("token")
-	if token != "123456" {
+	token := ctx.GetHeader("token")
+
+	if token != os.Getenv("TOKEN") {
 		ctx.JSON(401, gin.H{
 			"error": "token inválido",
 		})
@@ -47,8 +49,8 @@ func (c *UserController) GetAll(ctx *gin.Context) {
 }
 
 func (c *UserController) Store(ctx *gin.Context) {
-	token := ctx.Request.Header.Get("token")
-	if token != "123456" {
+	token := ctx.GetHeader("token")
+	if token != os.Getenv("TOKEN") {
 		ctx.JSON(401, gin.H{"error": "token inválido"})
 		return
 	}
@@ -69,7 +71,7 @@ func (c *UserController) Store(ctx *gin.Context) {
 
 func (c *UserController) Update(ctx *gin.Context) {
 	token := ctx.GetHeader("token")
-	if token != "123456" {
+	if token != os.Getenv("TOKEN") {
 		ctx.JSON(401, gin.H{"error": "token inválido"})
 		return
 	}
@@ -116,7 +118,7 @@ func (c *UserController) Update(ctx *gin.Context) {
 }
 func (c *UserController) Delete(ctx *gin.Context) {
 	token := ctx.GetHeader("token")
-	if token != "123456" {
+	if token != os.Getenv("TOKEN") {
 		ctx.JSON(401, gin.H{"error": "token inválido"})
 		return
 	}
@@ -135,7 +137,7 @@ func (c *UserController) Delete(ctx *gin.Context) {
 
 func (c *UserController) UpdateNameAge(ctx *gin.Context) {
 	token := ctx.GetHeader("token")
-	if token != "123456" {
+	if token != os.Getenv("TOKEN") {
 		ctx.JSON(401, gin.H{"error": "token inválido"})
 		return
 	}

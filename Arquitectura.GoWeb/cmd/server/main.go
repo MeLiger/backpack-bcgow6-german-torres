@@ -4,12 +4,15 @@ import (
 	"github.com/MeLiger/backpack-bcgow6-german-torres/Arquitectura.GoWeb/cmd/server/handler"
 
 	"github.com/MeLiger/backpack-bcgow6-german-torres/Arquitectura.GoWeb/internal/users"
-
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func main() {
-	userRepository := users.NewRepository()
+
+	_ = godotenv.Load()
+	db := store.New(store.FileType, "./users.json")
+	userRepository := users.NewRepository(db)
 	userService := users.NewService(userRepository)
 	userController := handler.NewUserController(userService)
 

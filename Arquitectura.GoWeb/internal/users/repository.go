@@ -1,6 +1,8 @@
 package users
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type User struct {
 	Id     int
@@ -13,9 +15,9 @@ type User struct {
 }
 
 var users []User
+
 var lastID int
 
-// ***Importado**//
 type Repository interface {
 	GetAll() ([]User, error)
 	Store(id int, name, email string, age int, height int, active bool, date string) (User, error)
@@ -25,25 +27,44 @@ type Repository interface {
 	Delete(id int) error
 }
 
-type repository struct{} //struct implementa los metodos de la interfaz
+type repository struct {
+	db store.Store
+}
 
-func NewRepository() Repository {
-	return &repository{}
+func NewRepository(db store.Store) Repository {
+	return &repository{
+		db: db,
+	}
 }
 
 func (r *repository) Store(id int, name string, email string, age int, height int, active bool, date string) (User, error) {
 	user := User{id, name, email, age, height, active, date}
-	users = append(users, user)
+	var us []User
+	r.db.Read(&us)
+	us = append(us, user)
+	if err := r.db.Write(us); err != nil {
+		return User{}, err
+	}
 	lastID = user.Id
 	return user, nil
 }
 
 func (r *repository) GetAll() ([]User, error) {
+	var us []User
+	r.db.Read(&us)
 	return users, nil
 }
 
 func (r *repository) LastID() (int, error) {
-	return lastID, nil
+	var us []User
+	if err := r.db.Read(&us); err != nil {
+		return 0, err
+	}
+	if len(us) == 0 {
+		return 0, nil
+	}
+
+	return us[len(us)-1].Id, nil
 }
 
 func (r *repository) Update(id int, name, email string, age int, height int, active bool, date string) (User, error) {
