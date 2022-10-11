@@ -98,7 +98,7 @@ func (c *UserController) Update(ctx *gin.Context) {
 	}
 	id, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
 	if err != nil {
-		ctx.JSON(400, gin.H{"error": "invalid ID"})
+		ctx.JSON(400, gin.H{"error": "ID inválido"})
 		return
 	}
 	var req request
@@ -164,7 +164,7 @@ func (c *UserController) UpdateNameAge(ctx *gin.Context) {
 	}
 	id, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
 	if err != nil {
-		ctx.JSON(400, gin.H{"error": "invalid ID"})
+		ctx.JSON(400, gin.H{"error": "ID inválido"})
 		return
 	}
 	var req request

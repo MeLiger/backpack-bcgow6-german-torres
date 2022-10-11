@@ -1,14 +1,5 @@
 [
-    {
-        "code": 401,
-        "error": "Token inválido"
-    },
     
-    {
-        "code": 200,
-        "data": {}
-    },
-
     
 
     {"id": 1, "name": "Jerry Louis", "email": "jerryls@gmail.com", "height": 183, "active": true, "date": "19-10-2018"},

@@ -54,7 +54,7 @@ func (r *repository) Store(id int, name string, email string, age int, height in
 func (r *repository) GetAll() ([]User, error) {
 	var us []User
 	r.db.Read(&us)
-	return users, nil
+	return us, nil
 }
 
 func (r *repository) LastID() (int, error) {

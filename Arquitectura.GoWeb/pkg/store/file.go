@@ -2,6 +2,7 @@ package store
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 )
 
@@ -46,5 +47,6 @@ func (fs *fileStore) Read(data interface{}) error {
 	if err != nil {
 		return err
 	}
+	fmt.Println(string(file))
 	return json.Unmarshal(file, &data)
 }
