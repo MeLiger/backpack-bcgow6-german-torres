@@ -46,3 +46,15 @@ func TestSliceSort(t *testing.T) {
 	// Assert
 	assert.Equal(t, scl, expectedSlice, "deben ser iguales")
 }
+
+func TestSliceSort2(t *testing.T) {
+	// Arrange
+	scl := []int{400, 600, 100, 300, 500, 200, 900}
+	expectedSlice := []int{100, 200, 300, 400, 500, 600, 900}
+
+	// Act
+	resultingSlice := SliceSort(scl)
+
+	// Assert
+	assert.Equal(t, resultingSlice, expectedSlice, "deben ser iguales")
+}
