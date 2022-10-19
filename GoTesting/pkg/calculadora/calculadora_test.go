@@ -34,3 +34,15 @@ func TestSubBad(t *testing.T) {
 	assert.NotEqual(t, resultadoEsperado, resultado, "deben ser iguales")
 
 }
+
+func TestSliceSort(t *testing.T) {
+	// Arrange
+	scl := []int{400, 600, 100, 300, 500, 200, 900}
+	expectedSlice := []int{100, 200, 300, 400, 500, 600, 900}
+
+	// Act
+	SliceSort(scl)
+
+	// Assert
+	assert.Equal(t, scl, expectedSlice, "deben ser iguales")
+}
