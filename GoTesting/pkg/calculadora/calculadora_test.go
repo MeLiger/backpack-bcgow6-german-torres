@@ -35,6 +35,10 @@ func TestSubBad(t *testing.T) {
 
 }
 
+
+
+//Testing emprolijado gracias a Lu Masiero.
+
 func TestSliceSort(t *testing.T) {
 	// Arrange
 	scl := []int{400, 600, 100, 300, 500, 200, 900}
@@ -47,7 +51,11 @@ func TestSliceSort(t *testing.T) {
 	assert.Equal(t, scl, expectedSlice, "deben ser iguales")
 }
 
-func TestSliceSort2(t *testing.T) {
+
+// Testing humildemente hecho por mi.
+
+/*
+func TestSliceSort(t *testing.T) {
 	// Arrange
 	scl := []int{400, 600, 100, 300, 500, 200, 900}
 	expectedSlice := []int{100, 200, 300, 400, 500, 600, 900}
@@ -57,4 +65,6 @@ func TestSliceSort2(t *testing.T) {
 
 	// Assert
 	assert.Equal(t, resultingSlice, expectedSlice, "deben ser iguales")
-}
+} */
+
+
