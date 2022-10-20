@@ -5,8 +5,8 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/MeLiger/backpack-bcgow6-german-torres/Arquitectura.GoWeb/internal/users"
-	"github.com/MeLiger/backpack-bcgow6-german-torres/Arquitectura.GoWeb/pkg/web"
+	"github.com/MeLiger/backpack-bcgow6-german-torres/GoTesting/Arquitectura.GoWeb/internal/users"
+	"github.com/MeLiger/backpack-bcgow6-german-torres/GoTesting/Arquitectura.GoWeb/pkg/web"
 	"github.com/gin-gonic/gin"
 )
 

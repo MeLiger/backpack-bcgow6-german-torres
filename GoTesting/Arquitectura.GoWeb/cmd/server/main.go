@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/MeLiger/backpack-bcgow6-german-torres/Arquitectura.GoWeb/cmd/server/handler"
-	"github.com/MeLiger/backpack-bcgow6-german-torres/Arquitectura.GoWeb/internal/users"
-	"github.com/MeLiger/backpack-bcgow6-german-torres/Arquitectura.GoWeb/pkg/store"
+	"github.com/MeLiger/backpack-bcgow6-german-torres/GoTesting/Arquitectura.GoWeb/cmd/server/handler"
+	"github.com/MeLiger/backpack-bcgow6-german-torres/GoTesting/Arquitectura.GoWeb/internal/users"
+	"github.com/MeLiger/backpack-bcgow6-german-torres/GoTesting/Arquitectura.GoWeb/pkg/store"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
