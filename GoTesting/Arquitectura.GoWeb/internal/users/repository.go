@@ -42,7 +42,9 @@ func NewRepository(db store.Store) Repository {
 func (r *repository) Store(id int, name string, email string, age int, height int, active bool, date string) (User, error) {
 	user := User{id, name, email, age, height, active, date}
 	var us []User
-	r.db.Read(&us)
+	if err := r.db.Read(&us); err != nil {
+		return User{}, err
+	}
 	us = append(us, user)
 	if err := r.db.Write(us); err != nil {
 		return User{}, err
@@ -53,7 +55,10 @@ func (r *repository) Store(id int, name string, email string, age int, height in
 
 func (r *repository) GetAll() ([]User, error) {
 	var us []User
-	r.db.Read(&us)
+	if err := r.db.Read(&us); err != nil {
+		return us, err
+	}
+
 	return us, nil
 }
 

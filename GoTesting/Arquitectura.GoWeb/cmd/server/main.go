@@ -35,5 +35,10 @@ func main() {
 	userRouter.PUT("/:id", userController.Update)
 	userRouter.PATCH("/:id", userController.UpdateNameAge)
 	userRouter.DELETE("/:id", userController.Delete)
-	router.Run()
+
+	err := router.Run()
+	if err != nil {
+		return
+	}
+
 }

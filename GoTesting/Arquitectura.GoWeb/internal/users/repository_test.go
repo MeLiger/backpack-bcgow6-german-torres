@@ -6,8 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-type StubStore struct{
-
+type StubStore struct {
 }
 
 func (s StubStore) Read(data interface{}) error {
@@ -72,15 +71,15 @@ func TestGetAll(t *testing.T) {
 	assert.Equal(t, dataEsperada, resultado)
 }
 
-func TestUpdateName(t *testing.T) {
-	//arrange
-	myStubStore := StubStore{}
-	repository := NewRepository(&myStubStore)
-	expectedResult := User{
+/*func TestUpdateName(t *testing.T) {
+//arrange
+myStubStore := StubStore{}
+repository := NewRepository(&myStubStore)
+expectedResult := User{
 
-	//act
-	result := repository.Update
-	
-	//assert
-	assert.Equal(t, expectedResult, result)
-	
+//act
+result := repository.Update
+
+//assert
+assert.Equal(t, expectedResult, result)
+*/
