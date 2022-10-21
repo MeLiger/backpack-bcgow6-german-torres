@@ -16,7 +16,7 @@ func TestDiv(t *testing.T) {
 	resultado, err := Div(num, den)
 
 	// Assert (then)
-	assert.Error(t, err)
+	assert.Nil(t, err)
 	assert.Equal(t, resultado, expectedResult, "deben ser iguales")
 
 }
