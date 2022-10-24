@@ -180,7 +180,7 @@ func (c *UserController) Patch(ctx *gin.Context) {
 		ctx.JSON(400, gin.H{"error": "La edad del usuario es requerida"})
 		return
 	}
-	u, err := c.service.Patch(int(id), req.Name, req.Email, req.Age, req.Height, req.Active, req.Date)
+	u, err := c.service.Patch(id, req.Name, req.Email, req.Age, req.Height, req.Active, req.Date)
 	if err != nil {
 		ctx.JSON(404, gin.H{"error": err.Error()})
 		return
