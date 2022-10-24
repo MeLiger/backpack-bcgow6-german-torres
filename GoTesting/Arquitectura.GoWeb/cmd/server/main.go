@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/MeLiger/backpack-bcgow6-german-torres/GoTesting/Arquitectura.GoWeb/cmd/server/handler"
 	"github.com/MeLiger/backpack-bcgow6-german-torres/GoTesting/Arquitectura.GoWeb/internal/users"
 	"github.com/MeLiger/backpack-bcgow6-german-torres/GoTesting/Arquitectura.GoWeb/pkg/store"
@@ -33,12 +35,12 @@ func main() {
 	userRouter.GET("/", userController.GetAll)
 	userRouter.POST("/", userController.Store)
 	userRouter.PUT("/:id", userController.Update)
-	userRouter.PATCH("/:id", userController.UpdateNameAge)
+	userRouter.PATCH("/:id", userController.Patch)
 	userRouter.DELETE("/:id", userController.Delete)
 
 	err := router.Run()
 	if err != nil {
-		return
+		os.Exit(1)
 	}
 
 }

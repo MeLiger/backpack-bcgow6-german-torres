@@ -156,7 +156,7 @@ func (c *UserController) Delete(ctx *gin.Context) {
 	ctx.JSON(200, gin.H{"data": fmt.Sprintf("El usuario %d ha sido eliminado", id)})
 }
 
-func (c *UserController) UpdateNameAge(ctx *gin.Context) {
+func (c *UserController) Patch(ctx *gin.Context) {
 	token := ctx.GetHeader("token")
 	if token != os.Getenv("TOKEN") {
 		ctx.JSON(401, gin.H{"error": "token inválido"})
@@ -180,10 +180,10 @@ func (c *UserController) UpdateNameAge(ctx *gin.Context) {
 		ctx.JSON(400, gin.H{"error": "La edad del usuario es requerida"})
 		return
 	}
-	p, err := c.service.UpdateNameAge(int(id), req.Name, req.Age)
+	u, err := c.service.Patch(int(id), req.Name, req.Email, req.Age, req.Height, req.Active, req.Date)
 	if err != nil {
 		ctx.JSON(404, gin.H{"error": err.Error()})
 		return
 	}
-	ctx.JSON(200, p)
+	ctx.JSON(200, u)
 }

@@ -25,8 +25,8 @@ type Repository interface {
 	Store(id int, name, email string, age int, height int, active bool, date string) (User, error)
 	LastID() (int, error)
 	Update(id int, name, email string, age int, height int, active bool, date string) (User, error)
-	UpdateNameAge(id int, name string, age int) (User, error)
-	Delete(id int) error
+	Patch(id int, name string, email string, age *int, height *int, active *bool, date string) (User, error)
+	Delete(id int) (User, error)
 }
 
 type repository struct {
@@ -75,57 +75,74 @@ func (r *repository) LastID() (int, error) {
 }
 
 func (r *repository) Update(id int, name, email string, age int, height int, active bool, date string) (User, error) {
-	user := User{Name: name, Email: email, Age: age, Height: height, Active: active, Date: date}
-	updated := false
-	for i := range users {
-		if users[i].Id == id {
-			user.Id = id
-			users[i] = user
-			updated = true
+	var u []User
+	r.db.Read(&users)
+	updated := User{}
+	for i, user := range users {
+		if user.Id == id {
+			updated = User{id, name, email, age, height, active, date}
+			u[i] = updated
+			err := r.db.Write(u)
+			if err != nil {
+				return User{}, err
+			}
+			return updated, nil
 		}
 	}
-	if !updated {
-		return User{}, fmt.Errorf("usuario %d no encontrado", id)
-	}
-	return user, nil
+	return updated, fmt.Errorf("usuario %d no encontrado", id)
 }
 
-func (r *repository) Delete(id int) error {
-	deleted := false
-	var index int
-	for i := range users {
-		if users[i].Id == id {
-			index = i
-			deleted = true
+func (r *repository) Delete(id int) (User, error) {
+	var u []User
+	r.db.Read(&users)
+
+	deleted := User{}
+	for i, user := range users {
+		if user.Id == id {
+			deleted = users[i]
+			u = append(u[:i], u[i+1:]...)
+			err := r.db.Write(u)
+			if err != nil {
+				return User{}, err
+			}
+			return deleted, nil
 		}
 	}
-	if !deleted {
-		return fmt.Errorf("producto %d no encontrado", id)
-	}
-	users = append(users[:index], users[index+1:]...)
-	return nil
+	return deleted, fmt.Errorf("usuario %d no existente", id)
 }
 
-func (r *repository) UpdateNameAge(id int, name string, age int) (User, error) {
-	var u User
-	updated := false
-	for i := range users {
-		if users[i].Id == id {
-			users[i].Name = name
-			updated = true
-			u = users[i]
+func (r *repository) Patch(id int, name string, email string, age *int, height *int, active *bool, date string) (User, error) {
+	var u []User
+	r.db.Read(&users)
+
+	for i, user := range users {
+		if user.Id == id {
+			if name != "" {
+				u[i].Name = name
+			}
+			if email != "" {
+				u[i].Email = email
+			}
+			if age != nil {
+				u[i].Age = *age
+			}
+			if height != nil {
+				u[i].Height = *height
+			}
+			if active != nil {
+				u[i].Active = *active
+			}
+			if date != "" {
+				u[i].Date = date
+			}
+			err := r.db.Write(users)
+			if err != nil {
+				return User{}, err
+			}
+			return u[i], nil
 		}
 	}
-	for j := range users {
-		if users[j].Id == id {
-			users[j].Age = age
-			updated = true
-			u = users[j]
-		}
-	}
-	if !updated {
-		return User{}, fmt.Errorf("usuario %d no encontrado", id)
-	}
-	return u, nil
+
+	return User{}, fmt.Errorf("usuario %d no registrado", id)
 
 }
