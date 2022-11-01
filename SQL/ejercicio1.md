@@ -16,5 +16,5 @@ Realizar un DER para modelar el escenario planteado.
     Venta: Numero, fecha
     Producto: Código, Precio, Nombre, Cantidad.
 
-3 - Cliente <realiza> Pedido <tiene> Producto
+3 - Cliente -realiza - Pedido - tiene -Producto
 
